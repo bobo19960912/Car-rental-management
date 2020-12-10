@@ -5,8 +5,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: () => import('../views/Home.vue')
+    name: 'index',
+    component: () => import('../views/index/index.vue'),
+    children:[{
+      path: '/user',
+      name: 'user',
+      component: () => import('../views/user/index.vue'),
+    }]
   },
   {
     path: '/about',
