@@ -5,33 +5,31 @@
     <!-- 地图 -->
     <Map></Map>
     <!-- 会员 -->
-    <div v-show="show" id="children-view">
+    <div id="children-view" :class="[show ? '' : 'open']">
       <router-view></router-view>
     </div>
+    <!-- 导航栏 -->
+    <Navbar class="navbar"></Navbar>
   </div>
 </template>
 <script>
 import Map from "../amap/index";
 import Cars from "../cars/index";
+import Navbar from "../../components/navbar/index";
 export default {
   components: {
     Map,
     Cars,
+    Navbar
   },
   data() {
-    return {
-      show: true,
-    };
+    return {};
   },
-  watch: {
-    $route(newValue) {
-      console.log(newValue.name);
-      const name = newValue.name;
-      if (name == "index") {
-        this.show = false;
-      } else {
-        this.show = true;
-      }
+  watch: {},
+  computed: {
+    show() {
+      console.log(this.$route.name);
+      return this.$route.name == "index" ? false : true;
     },
   },
   mounted() {},
@@ -46,5 +44,14 @@ export default {
   z-index: 101;
   width: 410px;
   background: #34393f;
+  &.open {
+    right: -500px;
+  }
+}
+.navbar{
+    position: fixed;
+    z-index: 101;
+    bottom: 85px;
+    left: 685px;
 }
 </style>

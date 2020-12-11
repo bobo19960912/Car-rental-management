@@ -8,7 +8,7 @@ export default {
   },
   methods: {
     user() {
-        
+        this.$router.push({name:"user"})
     },
   },
 };
